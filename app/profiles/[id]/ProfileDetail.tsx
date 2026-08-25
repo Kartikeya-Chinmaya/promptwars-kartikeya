@@ -22,8 +22,8 @@ export function ProfileDetail() {
   if (!profile) {
     return (
       <main className="flex-1 max-w-3xl mx-auto px-6 py-16 text-center">
-        <p className="text-muted">Profile not found.</p>
-        <Link href="/" className="text-primary font-medium hover:underline">
+        <p className="text-muted font-mono">Profile not found.</p>
+        <Link href="/" className="text-accent font-mono text-sm font-medium hover:underline">
           ← Back home
         </Link>
       </main>
@@ -42,15 +42,15 @@ export function ProfileDetail() {
     <main className="flex-1 max-w-5xl mx-auto px-6 py-12">
       <Link
         href={fromNeed ? `/needs/${fromNeed.id}` : "/"}
-        className="text-sm text-primary font-medium hover:underline"
+        className="text-meta font-mono text-accent font-medium hover:underline"
       >
         ← {fromNeed ? `Back to ${fromNeed.title}` : "Back home"}
       </Link>
 
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mt-3">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">{profile.name}</h1>
-          <p className="text-muted mt-2 max-w-xl">{profile.bio}</p>
+          <h1 className="font-display text-display-lg text-foreground">{profile.name}</h1>
+          <p className="text-muted mt-2 max-w-xl font-mono text-sm">{profile.bio}</p>
         </div>
         <Button onClick={() => setConnectOpen(true)}>Connect</Button>
       </div>
@@ -65,7 +65,7 @@ export function ProfileDetail() {
 
       <div className="grid sm:grid-cols-2 gap-8 mt-8">
         <div>
-          <h2 className="text-sm font-semibold text-foreground mb-2">Skills</h2>
+          <h2 className="text-meta font-mono font-semibold uppercase text-muted mb-2">Skills</h2>
           <div className="flex flex-wrap gap-1.5">
             {profile.skills.map((skill) => (
               <Chip key={skill}>{skill}</Chip>
@@ -73,7 +73,9 @@ export function ProfileDetail() {
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-foreground mb-2">Interests</h2>
+          <h2 className="text-meta font-mono font-semibold uppercase text-muted mb-2">
+            Interests
+          </h2>
           <div className="flex flex-wrap gap-1.5">
             {profile.interests.map((interest) => (
               <Chip key={interest}>{interest}</Chip>
@@ -82,9 +84,11 @@ export function ProfileDetail() {
         </div>
       </div>
 
-      <p className="text-sm text-muted mt-6">Availability: {profile.availability}</p>
+      <p className="text-sm text-muted mt-6 font-mono">
+        Availability: {profile.availability}
+      </p>
 
-      <h2 className="text-xl font-semibold text-foreground mt-10 mb-4">
+      <h2 className="font-display text-display-md text-foreground mt-10 mb-4 border-b border-surface-border pb-3">
         Projects that fit this profile
       </h2>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

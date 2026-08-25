@@ -5,14 +5,14 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-primary text-primary-foreground hover:bg-primary-hover",
+    "bg-accent text-accent-foreground border border-accent hover:shadow-[0_0_0_3px_rgba(57,255,136,0.25)]",
   secondary:
-    "bg-surface text-foreground border border-surface-border hover:border-primary",
-  ghost: "text-primary hover:underline",
+    "bg-transparent text-foreground border border-surface-border hover:border-accent",
+  ghost: "text-accent border border-transparent hover:border-accent/40",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none";
+  "btn-hover inline-flex items-center justify-center gap-2 rounded-none px-4 py-2.5 font-mono text-sm font-semibold uppercase tracking-wide disabled:opacity-40 disabled:pointer-events-none";
 
 export function Button({
   variant = "primary",

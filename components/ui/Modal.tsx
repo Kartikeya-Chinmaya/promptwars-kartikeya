@@ -28,7 +28,7 @@ export function Modal({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-sm rounded-xl border border-surface-border bg-surface p-6 shadow-lg"
+        className="animate-enter w-full max-w-sm rounded-none border border-surface-border bg-surface p-6 shadow-[0_0_0_1px_rgba(57,255,136,0.15),0_20px_60px_rgba(0,0,0,0.5)]"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

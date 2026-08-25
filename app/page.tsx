@@ -10,42 +10,70 @@ export default function Home() {
 
   return (
     <main className="flex-1">
-      <section className="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-          ProjectMatch
-        </h1>
-        <p className="mt-4 text-lg text-muted max-w-2xl mx-auto">
-          You've got the idea and most of the team. Find the one or two teammates
-          you're missing — fast, with a transparent breakdown of who covers what.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <LinkButton href="/needs/new">Post a Need — find teammates</LinkButton>
-          <LinkButton href="/profiles/new" variant="secondary">
-            Post my Profile — get matched
-          </LinkButton>
+      <section className="max-w-6xl mx-auto px-6 pt-20 pb-16">
+        <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 items-end">
+          <div>
+            <p className="text-meta font-mono text-accent uppercase mb-3 animate-enter">
+              [team_formation.exe]
+            </p>
+            <h1 className="font-display text-display-xl text-foreground animate-enter">
+              FIND THE
+              <br />
+              TEAMMATE
+              <br />
+              YOU&apos;RE MISSING.
+            </h1>
+            <p className="mt-6 text-muted max-w-md font-mono text-sm animate-enter">
+              Post a need or a profile. Get ranked matches with a transparent,
+              skill-by-skill coverage breakdown — not a black-box score.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="animate-enter" style={{ animationDelay: "80ms" }}>
+                <LinkButton href="/needs/new">Post a Need →</LinkButton>
+              </div>
+              <div className="animate-enter" style={{ animationDelay: "140ms" }}>
+                <LinkButton href="/profiles/new" variant="secondary">
+                  Post my Profile →
+                </LinkButton>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex md:flex-col gap-8 md:gap-6 md:border-l md:border-surface-border md:pl-8">
+            <div className="animate-enter" style={{ animationDelay: "180ms" }}>
+              <div className="font-display text-stat text-accent">{needs.length}</div>
+              <div className="text-meta font-mono text-muted uppercase">needs posted</div>
+            </div>
+            <div className="animate-enter" style={{ animationDelay: "240ms" }}>
+              <div className="font-display text-stat text-accent">{profiles.length}</div>
+              <div className="text-meta font-mono text-muted uppercase">profiles posted</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-6 pb-14">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-foreground">Open project needs</h2>
-          <span className="text-sm text-muted">{needs.length} posted</span>
+      <section className="max-w-6xl mx-auto px-6 pb-14">
+        <div className="flex items-center justify-between mb-5 border-b border-surface-border pb-3">
+          <h2 className="font-display text-display-md text-foreground">Open project needs</h2>
+          <span className="text-meta font-mono text-muted uppercase">{needs.length} posted</span>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {needs.map((need) => (
-            <NeedCard key={need.id} need={need} />
+          {needs.map((need, i) => (
+            <NeedCard key={need.id} need={need} index={i} />
           ))}
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-6 pb-20">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-foreground">Teammates available</h2>
-          <span className="text-sm text-muted">{profiles.length} posted</span>
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <div className="flex items-center justify-between mb-5 border-b border-surface-border pb-3">
+          <h2 className="font-display text-display-md text-foreground">Teammates available</h2>
+          <span className="text-meta font-mono text-muted uppercase">
+            {profiles.length} posted
+          </span>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {profiles.map((profile) => (
-            <ProfileCard key={profile.id} profile={profile} />
+          {profiles.map((profile, i) => (
+            <ProfileCard key={profile.id} profile={profile} index={i} />
           ))}
         </div>
       </section>

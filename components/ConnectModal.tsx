@@ -56,16 +56,16 @@ export function ConnectModal({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <h2 className="text-lg font-semibold text-foreground mb-1">
+      <h2 className="font-display text-display-md text-foreground mb-1">
         Connect with {profile.name}
       </h2>
-      <p className="text-sm text-muted mb-4">{profile.email}</p>
+      <p className="text-sm text-muted mb-4 font-mono">{profile.email}</p>
 
-      <div className="rounded-lg border border-surface-border bg-missing-soft p-3 mb-5">
-        <p className="text-xs font-semibold text-muted mb-1">Subject</p>
-        <p className="text-sm text-foreground mb-3">{subject}</p>
-        <p className="text-xs font-semibold text-muted mb-1">Message</p>
-        <p className="text-sm text-foreground whitespace-pre-wrap">{body}</p>
+      <div className="rounded-none border border-surface-border bg-missing-soft p-3 mb-5">
+        <p className="text-micro font-mono font-semibold uppercase text-muted mb-1">Subject</p>
+        <p className="text-sm text-foreground mb-3 font-mono">{subject}</p>
+        <p className="text-micro font-mono font-semibold uppercase text-muted mb-1">Message</p>
+        <p className="text-sm text-foreground whitespace-pre-wrap font-mono">{body}</p>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">

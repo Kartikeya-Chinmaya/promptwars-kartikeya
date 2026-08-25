@@ -4,41 +4,50 @@ export function SkillCoverageBar({
   coverage,
   coveredCount,
   totalRequired,
+  large = false,
 }: {
   coverage: SkillCoverageItem[];
   coveredCount: number;
   totalRequired: number;
+  large?: boolean;
 }) {
   return (
     <div>
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-sm font-semibold text-foreground">
-          {coveredCount}/{totalRequired} skills covered
+      <div className="flex items-center justify-between mb-2">
+        <span
+          className={`font-display ${large ? "text-display-md" : "text-lg"} text-foreground`}
+        >
+          {coveredCount}/{totalRequired}
+          <span className="text-meta font-mono font-normal text-muted ml-2 uppercase">
+            covered
+          </span>
         </span>
       </div>
 
       {totalRequired > 0 && (
-        <div className="flex gap-1 mb-2.5" aria-hidden="true">
+        <div className={`flex gap-1 ${large ? "mb-3" : "mb-2.5"}`} aria-hidden="true">
           {coverage.map((item, i) => (
             <span
               key={i}
-              className={`h-1.5 flex-1 rounded-full ${
-                item.covered ? "bg-success" : "bg-missing"
+              className={`animate-bar ${large ? "h-2.5" : "h-1.5"} flex-1 ${
+                item.covered ? "bg-accent" : "bg-missing"
               }`}
+              style={{ animationDelay: `${i * 60}ms` }}
             />
           ))}
         </div>
       )}
 
       <ul className="flex flex-wrap gap-1.5">
-        {coverage.map((item) => (
+        {coverage.map((item, i) => (
           <li
             key={item.skill}
-            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium border ${
+            className={`tag animate-enter inline-flex items-center gap-1 px-2 py-1 font-mono text-xs font-medium ${
               item.covered
-                ? "bg-success-soft text-success border-success/30"
-                : "bg-missing-soft text-muted border-surface-border"
+                ? "bg-success-soft text-accent border-accent/40"
+                : "bg-missing-soft text-muted-2 border-surface-border"
             }`}
+            style={{ animationDelay: `${i * 30}ms` }}
           >
             <span aria-hidden="true">{item.covered ? "✓" : "✗"}</span>
             {item.skill}

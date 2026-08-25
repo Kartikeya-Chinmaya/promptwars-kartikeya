@@ -8,20 +8,22 @@ export function MatchCard({ match, needId }: { match: ProfileMatch; needId: stri
 
   return (
     <Link href={`/profiles/${profile.id}?fromNeed=${needId}`} className="block group">
-      <Card className="p-5 h-full transition-shadow group-hover:shadow-md group-hover:border-primary/40">
-        <div className="flex items-start justify-between gap-3 mb-3">
+      <Card className="p-5 h-full hover:border-accent hover:shadow-[0_0_0_1px_rgba(57,255,136,0.3)]">
+        <div className="flex items-start justify-between gap-3 mb-4">
           <div>
-            <h3 className="font-semibold text-foreground">{profile.name}</h3>
-            <p className="text-xs text-muted mt-0.5">{profile.availability}</p>
+            <h3 className="font-display text-display-md text-foreground">{profile.name}</h3>
+            <p className="text-meta font-mono text-muted mt-0.5 uppercase">
+              {profile.availability}
+            </p>
           </div>
           <span
-            className={`shrink-0 text-xs font-medium rounded-full px-2.5 py-1 ${
+            className={`tag shrink-0 text-micro font-mono font-medium px-2 py-1 uppercase ${
               availabilityMatch
-                ? "bg-success-soft text-success"
-                : "bg-missing-soft text-muted"
+                ? "bg-success-soft text-accent border-accent/40"
+                : "bg-missing-soft text-muted border-surface-border"
             }`}
           >
-            {availabilityMatch ? "Available ✓" : "Availability differs"}
+            {availabilityMatch ? "Available ✓" : "Diff. schedule"}
           </span>
         </div>
 
@@ -29,15 +31,16 @@ export function MatchCard({ match, needId }: { match: ProfileMatch; needId: stri
           coverage={coverage}
           coveredCount={coveredCount}
           totalRequired={totalRequired}
+          large
         />
 
         {profile.interests.length > 0 && (
-          <p className="text-xs text-muted mt-3 truncate">
-            Interested in {profile.interests.slice(0, 3).join(", ")}
+          <p className="text-xs text-muted mt-3 truncate font-mono">
+            interests: {profile.interests.slice(0, 3).join(", ")}
           </p>
         )}
 
-        <span className="inline-block text-sm font-medium text-primary mt-3 group-hover:underline">
+        <span className="inline-block text-meta font-mono font-semibold uppercase text-accent mt-4 group-hover:underline">
           View profile →
         </span>
       </Card>

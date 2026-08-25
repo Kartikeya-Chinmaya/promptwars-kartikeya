@@ -15,8 +15,11 @@ export default function NeedDetailPage() {
   if (!need) {
     return (
       <main className="flex-1 max-w-3xl mx-auto px-6 py-16 text-center">
-        <p className="text-muted">Need not found.</p>
-        <Link href="/" className="text-primary font-medium hover:underline">
+        <p className="text-muted font-mono">Need not found.</p>
+        <Link
+          href="/"
+          className="text-accent font-mono text-sm font-medium hover:underline"
+        >
           ← Back home
         </Link>
       </main>
@@ -27,12 +30,12 @@ export default function NeedDetailPage() {
 
   return (
     <main className="flex-1 max-w-5xl mx-auto px-6 py-12">
-      <Link href="/" className="text-sm text-primary font-medium hover:underline">
+      <Link href="/" className="text-meta font-mono text-accent font-medium hover:underline">
         ← Back to all needs
       </Link>
 
-      <h1 className="text-3xl font-bold text-foreground mt-3">{need.title}</h1>
-      <p className="text-muted mt-2 max-w-2xl">{need.description}</p>
+      <h1 className="font-display text-display-lg text-foreground mt-3">{need.title}</h1>
+      <p className="text-muted mt-2 max-w-2xl font-mono text-sm">{need.description}</p>
 
       <div className="flex flex-wrap gap-2 mt-4">
         {need.skills_required.map((skill) => (
@@ -41,7 +44,7 @@ export default function NeedDetailPage() {
         <Chip>{need.availability_required}</Chip>
       </div>
 
-      <h2 className="text-xl font-semibold text-foreground mt-10 mb-4">
+      <h2 className="font-display text-display-md text-foreground mt-10 mb-4 border-b border-surface-border pb-3">
         Ranked matches ({matches.length})
       </h2>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

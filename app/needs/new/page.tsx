@@ -38,11 +38,11 @@ export default function NewNeedPage() {
 
   return (
     <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
-      <Link href="/" className="text-sm text-primary font-medium hover:underline">
+      <Link href="/" className="text-meta font-mono text-accent font-medium hover:underline">
         ← Back home
       </Link>
-      <h1 className="text-2xl font-bold text-foreground mt-3 mb-1">Post a Need</h1>
-      <p className="text-muted mb-8">
+      <h1 className="font-display text-display-lg text-foreground mt-3 mb-1">Post a Need</h1>
+      <p className="text-muted mb-8 font-mono text-sm">
         Describe your project and the skills you're missing — we'll rank who covers them.
       </p>
 
@@ -87,7 +87,7 @@ export default function NewNeedPage() {
           </Select>
         </Field>
 
-        {error && <p className="text-sm text-rose-500 mb-4">{error}</p>}
+        {error && <p className="text-sm text-danger mb-4 font-mono">{error}</p>}
 
         <Button type="submit">Post need &amp; see matches</Button>
       </form>
