@@ -12,8 +12,13 @@ const MAX_DELTA_MS = 100;
  */
 export function useIntervalTimer(onTick: (deltaMs: number) => void, tickMs = 30) {
   const callbackRef = useRef(onTick);
-  callbackRef.current = onTick;
   const lastRef = useRef<number | null>(null);
+
+  // Refs must not be written during render — keep the callback ref fresh via
+  // an effect (runs after every render, no deps) instead of a direct write.
+  useEffect(() => {
+    callbackRef.current = onTick;
+  });
 
   useEffect(() => {
     lastRef.current = null;

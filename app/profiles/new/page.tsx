@@ -48,7 +48,7 @@ export default function NewProfilePage() {
         <ScrambleText text="Post your Profile" />
       </h1>
       <p className="text-muted mb-8 font-mono text-sm">
-        Share your skills and availability — we'll rank the projects that fit you.
+        Share your skills and availability — we&apos;ll rank the projects that fit you.
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -80,11 +80,11 @@ export default function NewProfilePage() {
           />
         </Field>
 
-        <Field label="Skills">
+        <Field grouped label="Skills">
           <MultiSelectChips options={SKILL_OPTIONS} selected={skills} onChange={setSkills} />
         </Field>
 
-        <Field label="Interests" hint="Optional">
+        <Field grouped label="Interests" hint="Optional">
           <MultiSelectChips
             options={INTEREST_OPTIONS}
             selected={interests}

@@ -46,7 +46,7 @@ export default function NewNeedPage() {
         <ScrambleText text="Post a Need" />
       </h1>
       <p className="text-muted mb-8 font-mono text-sm">
-        Describe your project and the skills you're missing — we'll rank who covers them.
+        Describe your project and the skills you&apos;re missing — we&apos;ll rank who covers them.
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ export default function NewNeedPage() {
           />
         </Field>
 
-        <Field label="Skills required" hint="Select every skill the project needs.">
+        <Field grouped label="Skills required" hint="Select every skill the project needs.">
           <MultiSelectChips
             options={SKILL_OPTIONS}
             selected={skillsRequired}

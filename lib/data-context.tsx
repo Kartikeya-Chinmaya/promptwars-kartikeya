@@ -1,14 +1,8 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
+import { createContext, useContext, useSyncExternalStore, ReactNode } from "react";
 import { Need, Profile } from "./types";
-import { seedNeeds, seedProfiles } from "./seed";
-
-const STORAGE_KEY = "promptwars-data-v1";
-
-function makeId(prefix: string): string {
-  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-}
+import { dataStore } from "./dataStore";
 
 interface DataContextValue {
   profiles: Profile[];
@@ -22,44 +16,11 @@ interface DataContextValue {
 const DataContext = createContext<DataContextValue | null>(null);
 
 export function DataProvider({ children }: { children: ReactNode }) {
-  const [profiles, setProfiles] = useState<Profile[]>(seedProfiles);
-  const [needs, setNeeds] = useState<Need[]>(seedNeeds);
-  const hydrated = useRef(false);
-
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as { profiles?: Profile[]; needs?: Need[] };
-        if (parsed.profiles?.length) setProfiles(parsed.profiles);
-        if (parsed.needs?.length) setNeeds(parsed.needs);
-      }
-    } catch {
-      // ignore malformed storage, fall back to seed data already in state
-    }
-    hydrated.current = true;
-  }, []);
-
-  useEffect(() => {
-    if (!hydrated.current) return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ profiles, needs }));
-    } catch {
-      // storage unavailable (private mode, quota) — matching still works in-memory
-    }
-  }, [profiles, needs]);
-
-  function addProfile(profile: Omit<Profile, "id">): Profile {
-    const newProfile: Profile = { ...profile, id: makeId("profile") };
-    setProfiles((prev) => [...prev, newProfile]);
-    return newProfile;
-  }
-
-  function addNeed(need: Omit<Need, "id">): Need {
-    const newNeed: Need = { ...need, id: makeId("need") };
-    setNeeds((prev) => [...prev, newNeed]);
-    return newNeed;
-  }
+  const { profiles, needs } = useSyncExternalStore(
+    dataStore.subscribe,
+    dataStore.getSnapshot,
+    dataStore.getServerSnapshot,
+  );
 
   function getProfile(id: string) {
     return profiles.find((p) => p.id === id);
@@ -70,7 +31,16 @@ export function DataProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <DataContext.Provider value={{ profiles, needs, addProfile, addNeed, getProfile, getNeed }}>
+    <DataContext.Provider
+      value={{
+        profiles,
+        needs,
+        addProfile: dataStore.addProfile,
+        addNeed: dataStore.addNeed,
+        getProfile,
+        getNeed,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

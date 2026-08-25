@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Profile } from "@/lib/types";
 import { Modal } from "@/components/ui/Modal";
 import { Button, buttonClasses } from "@/components/ui/Button";
@@ -19,6 +19,7 @@ export function ConnectModal({
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
+  const titleId = useId();
   const mailtoHref = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   function legacyCopy(text: string): boolean {
@@ -55,8 +56,8 @@ export function ConnectModal({
   }
 
   return (
-    <Modal open={open} onClose={onClose}>
-      <h2 className="font-display text-display-md text-foreground mb-1">
+    <Modal open={open} onClose={onClose} titleId={titleId}>
+      <h2 id={titleId} className="font-display text-display-md text-foreground mb-1">
         Connect with {profile.name}
       </h2>
       <p className="text-sm text-muted mb-4 font-mono">{profile.email}</p>
