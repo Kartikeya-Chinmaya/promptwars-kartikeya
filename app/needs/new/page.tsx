@@ -8,6 +8,7 @@ import { AVAILABILITY_OPTIONS, SKILL_OPTIONS } from "@/lib/types";
 import { Field, TextInput, TextArea, Select } from "@/components/ui/Field";
 import { MultiSelectChips } from "@/components/ui/MultiSelectChips";
 import { Button } from "@/components/ui/Button";
+import { ScrambleText } from "@/components/ScrambleText";
 
 export default function NewNeedPage() {
   const router = useRouter();
@@ -41,7 +42,9 @@ export default function NewNeedPage() {
       <Link href="/" className="text-meta font-mono text-accent font-medium hover:underline">
         ← Back home
       </Link>
-      <h1 className="font-display text-display-lg text-foreground mt-3 mb-1">Post a Need</h1>
+      <h1 className="font-display text-display-lg text-foreground mt-3 mb-1">
+        <ScrambleText text="Post a Need" />
+      </h1>
       <p className="text-muted mb-8 font-mono text-sm">
         Describe your project and the skills you're missing — we'll rank who covers them.
       </p>

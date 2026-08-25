@@ -168,3 +168,23 @@ body {
   clip-path: inset(60% 0 0 0);
   transform: translate(4px, 3px);
 }
+
+/*
+ * Underline sweep: transform is cheaper to animate than width (no layout
+ * reflow per frame). Starts collapsed at the left edge, IntersectionObserver
+ * adds .in-view once, which triggers this transition to scaleX(1).
+ */
+.sweep-underline {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin-top: 4px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
+}
+
+.sweep-underline.in-view {
+  transform: scaleX(1);
+}
