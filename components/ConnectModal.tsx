@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Profile } from "@/lib/types";
 import { Modal } from "@/components/ui/Modal";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClasses } from "@/components/ui/Button";
 
 export function ConnectModal({
   profile,
@@ -72,10 +72,8 @@ export function ConnectModal({
         <Button type="button" onClick={handleCopy}>
           {copied ? "Copied!" : "Copy email"}
         </Button>
-        <a href={mailtoHref}>
-          <Button type="button" variant="secondary">
-            Open email app
-          </Button>
+        <a href={mailtoHref} className={buttonClasses("secondary")}>
+          Open email app
         </a>
         <Button type="button" variant="ghost" onClick={onClose} className="ml-auto">
           Close

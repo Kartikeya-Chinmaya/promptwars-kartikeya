@@ -14,6 +14,10 @@ const variantClasses: Record<Variant, string> = {
 const base =
   "btn-hover inline-flex items-center justify-center gap-2 rounded-none px-4 py-2.5 font-mono text-sm font-semibold uppercase tracking-wide disabled:opacity-40 disabled:pointer-events-none";
 
+export function buttonClasses(variant: Variant = "primary", className = "") {
+  return `${base} ${variantClasses[variant]} ${className}`;
+}
+
 export function Button({
   variant = "primary",
   className = "",
@@ -21,7 +25,7 @@ export function Button({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; children: ReactNode }) {
   return (
-    <button className={`${base} ${variantClasses[variant]} ${className}`} {...props}>
+    <button className={buttonClasses(variant, className)} {...props}>
       {children}
     </button>
   );
@@ -39,7 +43,7 @@ export function LinkButton({
   children: ReactNode;
 }) {
   return (
-    <Link href={href} className={`${base} ${variantClasses[variant]} ${className}`}>
+    <Link href={href} className={buttonClasses(variant, className)}>
       {children}
     </Link>
   );

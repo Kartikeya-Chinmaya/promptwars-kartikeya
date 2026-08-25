@@ -170,9 +170,10 @@ body {
 }
 
 /*
- * Underline sweep: transform is cheaper to animate than width (no layout
- * reflow per frame). Starts collapsed at the left edge, IntersectionObserver
- * adds .in-view once, which triggers this transition to scaleX(1).
+ * Underline sweep: hover-triggered, like a nav-link underline reveal.
+ * transform is cheaper to animate than width (no layout reflow per frame).
+ * Collapsed at the left edge by default; hovering the heading sweeps it in,
+ * moving the mouse away sweeps it back out.
  */
 .sweep-underline {
   display: block;
@@ -182,9 +183,9 @@ body {
   background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 500ms ease;
+  transition: transform 300ms ease;
 }
 
-.sweep-underline.in-view {
+.sweep-hover:hover .sweep-underline {
   transform: scaleX(1);
 }
