@@ -16,7 +16,11 @@ export function SweepHeading({ children }: { children: ReactNode }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 },
+      // rootMargin shrinks the bottom of the intersection root so an element
+      // sitting right at the initial fold (barely visible on page load, no
+      // real scroll yet) doesn't count as "in view" — it has to be pulled
+      // meaningfully into the viewport by an actual scroll first.
+      { threshold: 0.4, rootMargin: "0px 0px -15% 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();

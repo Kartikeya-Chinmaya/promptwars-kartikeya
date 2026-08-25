@@ -6,8 +6,8 @@ import { useIntervalTimer } from "./useIntervalTimer";
 /**
  * Toggles a boolean on/off in short randomized bursts, driven entirely by
  * the setInterval-based timer loop (no CSS keyframes, no rAF). Fires a
- * couple of quick bursts right after mount, then settles into rare,
- * ambient bursts so it reads as an intentional signal glitch.
+ * couple of quick bursts right after mount, then settles into a steady
+ * 2s cooldown between ambient bursts.
  */
 export function useGlitchBursts() {
   const [glitching, setGlitching] = useState(false);
@@ -27,7 +27,7 @@ export function useGlitchBursts() {
       p.introBursts -= 1;
       p.duration = 180 + Math.random() * 220;
     } else {
-      p.duration = 4000 + Math.random() * 5000;
+      p.duration = 2000;
     }
   }, 30);
 
