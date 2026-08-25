@@ -49,7 +49,7 @@ export function Modal({
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="animate-enter w-full max-w-sm rounded-none border border-surface-border bg-surface p-6 shadow-[0_0_0_1px_rgba(57,255,136,0.15),0_20px_60px_rgba(0,0,0,0.5)] focus:outline-none"
+        className="animate-enter w-full max-w-sm rounded-none border border-surface-border bg-surface p-6 modal-panel-shadow focus:outline-none"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

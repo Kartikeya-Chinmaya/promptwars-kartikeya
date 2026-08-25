@@ -18,7 +18,7 @@ export default function NeedDetailPage() {
         <p className="text-muted font-mono">Need not found.</p>
         <Link
           href="/"
-          className="text-accent font-mono text-sm font-medium hover:underline"
+          className="text-accent-text font-mono text-sm font-medium hover:underline"
         >
           ← Back home
         </Link>
@@ -30,7 +30,7 @@ export default function NeedDetailPage() {
 
   return (
     <main className="flex-1 max-w-5xl mx-auto px-6 py-12">
-      <Link href="/" className="text-meta font-mono text-accent font-medium hover:underline">
+      <Link href="/" className="text-meta font-mono text-accent-text font-medium hover:underline">
         ← Back to all needs
       </Link>
 

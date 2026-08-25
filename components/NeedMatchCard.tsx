@@ -8,7 +8,7 @@ export function NeedMatchCard({ match }: { match: NeedMatch }) {
 
   return (
     <Link href={`/needs/${need.id}`} className="block group">
-      <Card className="p-5 h-full hover:border-accent hover:shadow-[0_0_0_1px_rgba(57,255,136,0.3)]">
+      <Card className="p-5 h-full hover:border-accent card-glow">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div>
             <h3 className="font-display text-display-md text-foreground">{need.title}</h3>
@@ -19,7 +19,7 @@ export function NeedMatchCard({ match }: { match: NeedMatch }) {
           <span
             className={`tag shrink-0 text-micro font-mono font-medium px-2 py-1 uppercase ${
               availabilityMatch
-                ? "bg-success-soft text-accent border-accent/40"
+                ? "bg-success-soft text-accent-text border-accent/40"
                 : "bg-missing-soft text-muted border-surface-border"
             }`}
           >
@@ -36,7 +36,7 @@ export function NeedMatchCard({ match }: { match: NeedMatch }) {
           large
         />
 
-        <span className="inline-block text-meta font-mono font-semibold uppercase text-accent mt-4 group-hover:underline">
+        <span className="inline-block text-meta font-mono font-semibold uppercase text-accent-text mt-4 group-hover:underline">
           View need →
         </span>
       </Card>

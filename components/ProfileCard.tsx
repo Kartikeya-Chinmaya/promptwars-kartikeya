@@ -7,7 +7,7 @@ export function ProfileCard({ profile, index = 0 }: { profile: Profile; index?: 
   return (
     <Link href={`/profiles/${profile.id}`} className="block group">
       <Card
-        className="animate-enter p-5 h-full hover:border-accent hover:shadow-[0_0_0_1px_rgba(57,255,136,0.3)]"
+        className="animate-enter p-5 h-full hover:border-accent card-glow"
         style={{ animationDelay: `${index * 60}ms` }}
       >
         <h3 className="font-display text-display-md text-foreground">{profile.name}</h3>

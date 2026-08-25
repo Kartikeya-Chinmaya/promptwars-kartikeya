@@ -4,7 +4,7 @@ type ChipTone = "neutral" | "covered" | "missing";
 
 const toneClasses: Record<ChipTone, string> = {
   neutral: "bg-missing-soft text-foreground border-surface-border",
-  covered: "bg-success-soft text-accent border-accent/40",
+  covered: "bg-success-soft text-accent-text border-accent/40",
   missing: "bg-missing-soft text-muted-2 border-surface-border",
 };
 

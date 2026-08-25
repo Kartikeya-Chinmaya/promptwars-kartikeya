@@ -44,7 +44,7 @@ export function SkillCoverageBar({
             key={item.skill}
             className={`tag animate-enter inline-flex items-center gap-1 px-2 py-1 font-mono text-xs font-medium ${
               item.covered
-                ? "bg-success-soft text-accent border-accent/40"
+                ? "bg-success-soft text-accent-text border-accent/40"
                 : "bg-missing-soft text-muted-2 border-surface-border"
             }`}
             style={{ animationDelay: `${i * 30}ms` }}

@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/*
+ * Theme tokens. Dark is the default look (:root, no attribute needed).
+ * Light is a second, complete set of the same custom properties scoped
+ * under [data-theme="light"] — components never branch on theme, they
+ * just reference the token and the value swaps underneath them.
+ */
 :root {
   --background: #0b0d0f;
   --surface: #14171a;
@@ -12,12 +18,40 @@
 
   --accent: #39ff88;
   --accent-foreground: #0b0d0f;
+  /* Text-safe accent tone. In dark mode the bright accent already reads
+     fine as text, so this is just an alias of --accent; light mode gives
+     it its own darker value (see below) since the bright accent doesn't
+     have enough contrast to use directly as text on a light surface. */
+  --accent-text: var(--accent);
+  /* RGB triplet (no alpha) so rgba(var(--accent-rgb), X) can build
+     accent-tinted translucent fills/glows that stay correct per theme. */
+  --accent-rgb: 57, 255, 136;
   --danger: #ff5c5c;
 
   --success: var(--accent);
-  --success-soft: rgba(57, 255, 136, 0.12);
+  --success-soft: rgba(var(--accent-rgb), 0.12);
   --missing: #3a4046;
   --missing-soft: #1a1e21;
+}
+
+[data-theme="light"] {
+  --background: #f2ede4;
+  --surface: #ffffff;
+  /* Solid near-black border, not the thin tinted-gray line dark mode uses —
+     a light surface needs a firmer edge to read as a bounded card/input. */
+  --surface-border: #1a1a1a;
+  --foreground: #1a1a1a;
+  --muted: #5c5648;
+  --muted-2: #6e6858;
+
+  --accent: #b4e000;
+  --accent-foreground: #1a1a1a;
+  --accent-text: #6b8e00;
+  --accent-rgb: 180, 224, 0;
+  --danger: #b32b2b;
+
+  --missing: #d8d2c4;
+  --missing-soft: #ebe4d5;
 }
 
 @theme inline {
@@ -30,6 +64,7 @@
 
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
   --color-danger: var(--danger);
 
   --color-primary: var(--accent);
@@ -49,6 +84,9 @@
 body {
   background: var(--color-background);
   color: var(--color-foreground);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
 }
 
 .font-display {
@@ -199,4 +237,23 @@ a:focus-visible {
 
 .sweep-hover:hover .sweep-underline {
   transform: scaleX(1);
+}
+
+/*
+ * Accent-tinted hover glows. Kept as plain CSS (rather than Tailwind
+ * arbitrary-value classes baking in a literal rgba(57,255,136,...)) so the
+ * glow color follows --accent-rgb and stays correct in both themes.
+ */
+.card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.3);
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.25);
+}
+
+.modal-panel-shadow {
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.15),
+    0 20px 60px rgba(0, 0, 0, 0.5);
 }

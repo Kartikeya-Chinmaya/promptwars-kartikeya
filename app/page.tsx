@@ -18,7 +18,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-6 pt-20 pb-16">
         <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 items-end">
           <div>
-            <p className="text-meta font-mono text-accent uppercase mb-3 animate-enter">
+            <p className="text-meta font-mono text-accent-text uppercase mb-3 animate-enter">
               [team_formation.exe]
             </p>
             <h1 className="font-display text-display-xl text-foreground animate-enter">
@@ -48,11 +48,11 @@ export default function Home() {
 
           <div className="flex md:flex-col gap-8 md:gap-6 md:border-l md:border-surface-border md:pl-8">
             <div className="animate-enter" style={{ animationDelay: "180ms" }}>
-              <div className="font-display text-stat text-accent">{needs.length}</div>
+              <div className="font-display text-stat text-accent-text">{needs.length}</div>
               <div className="text-meta font-mono text-muted uppercase">needs posted</div>
             </div>
             <div className="animate-enter" style={{ animationDelay: "240ms" }}>
-              <div className="font-display text-stat text-accent">{profiles.length}</div>
+              <div className="font-display text-stat text-accent-text">{profiles.length}</div>
               <div className="text-meta font-mono text-muted uppercase">profiles posted</div>
             </div>
           </div>

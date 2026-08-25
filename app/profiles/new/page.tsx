@@ -41,7 +41,7 @@ export default function NewProfilePage() {
 
   return (
     <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
-      <Link href="/" className="text-meta font-mono text-accent font-medium hover:underline">
+      <Link href="/" className="text-meta font-mono text-accent-text font-medium hover:underline">
         ← Back home
       </Link>
       <h1 className="font-display text-display-lg text-foreground mt-3 mb-1">

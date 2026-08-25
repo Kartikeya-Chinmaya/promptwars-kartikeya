@@ -23,7 +23,7 @@ export function ProfileDetail() {
     return (
       <main className="flex-1 max-w-3xl mx-auto px-6 py-16 text-center">
         <p className="text-muted font-mono">Profile not found.</p>
-        <Link href="/" className="text-accent font-mono text-sm font-medium hover:underline">
+        <Link href="/" className="text-accent-text font-mono text-sm font-medium hover:underline">
           ← Back home
         </Link>
       </main>
@@ -42,7 +42,7 @@ export function ProfileDetail() {
     <main className="flex-1 max-w-5xl mx-auto px-6 py-12">
       <Link
         href={fromNeed ? `/needs/${fromNeed.id}` : "/"}
-        className="text-meta font-mono text-accent font-medium hover:underline"
+        className="text-meta font-mono text-accent-text font-medium hover:underline"
       >
         ← {fromNeed ? `Back to ${fromNeed.title}` : "Back home"}
       </Link>

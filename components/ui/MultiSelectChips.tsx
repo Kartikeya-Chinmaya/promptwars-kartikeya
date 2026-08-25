@@ -85,7 +85,7 @@ export function MultiSelectChips({
         <button
           type="button"
           onClick={addCustom}
-          className="btn-hover font-mono text-xs font-semibold uppercase tracking-wide text-accent border border-accent/40 px-2.5 py-1.5 hover:border-accent"
+          className="btn-hover font-mono text-xs font-semibold uppercase tracking-wide text-accent-text border border-accent/40 px-2.5 py-1.5 hover:border-accent"
         >
           Add
         </button>

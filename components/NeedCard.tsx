@@ -7,7 +7,7 @@ export function NeedCard({ need, index = 0 }: { need: Need; index?: number }) {
   return (
     <Link href={`/needs/${need.id}`} className="block group">
       <Card
-        className="animate-enter p-5 h-full hover:border-accent hover:shadow-[0_0_0_1px_rgba(57,255,136,0.3)]"
+        className="animate-enter p-5 h-full hover:border-accent card-glow"
         style={{ animationDelay: `${index * 60}ms` }}
       >
         <h3 className="font-display text-display-md text-foreground">{need.title}</h3>
