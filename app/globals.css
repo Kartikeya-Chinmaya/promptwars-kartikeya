@@ -134,3 +134,37 @@ body {
 .btn-hover:hover {
   transform: translateY(-1px);
 }
+
+/*
+ * Glitch effect: purely a class toggle, no @keyframes/transition involved.
+ * `.glitching` is flipped on/off by a setInterval loop (useGlitchBursts),
+ * so the on/off timing is fully JS-controlled rather than CSS-animated.
+ */
+.glitch-line {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-line::before,
+.glitch-line::after {
+  content: attr(data-txt);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch-line.glitching::before {
+  opacity: 1;
+  color: var(--color-accent);
+  clip-path: inset(0 0 60% 0);
+  transform: translate(-4px, -3px);
+}
+
+.glitch-line.glitching::after {
+  opacity: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-accent);
+  clip-path: inset(60% 0 0 0);
+  transform: translate(4px, 3px);
+}

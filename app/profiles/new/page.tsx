@@ -8,6 +8,7 @@ import { AVAILABILITY_OPTIONS, INTEREST_OPTIONS, SKILL_OPTIONS } from "@/lib/typ
 import { Field, TextInput, TextArea, Select } from "@/components/ui/Field";
 import { MultiSelectChips } from "@/components/ui/MultiSelectChips";
 import { Button } from "@/components/ui/Button";
+import { ScrambleText } from "@/components/ScrambleText";
 
 export default function NewProfilePage() {
   const router = useRouter();
@@ -44,7 +45,7 @@ export default function NewProfilePage() {
         ← Back home
       </Link>
       <h1 className="font-display text-display-lg text-foreground mt-3 mb-1">
-        Post your Profile
+        <ScrambleText text="Post your Profile" />
       </h1>
       <p className="text-muted mb-8 font-mono text-sm">
         Share your skills and availability — we'll rank the projects that fit you.

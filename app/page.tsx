@@ -1,12 +1,17 @@
 "use client";
 
 import { useData } from "@/lib/data-context";
+import { useGlitchBursts } from "@/lib/useGlitchBursts";
 import { LinkButton } from "@/components/ui/Button";
 import { NeedCard } from "@/components/NeedCard";
 import { ProfileCard } from "@/components/ProfileCard";
+import { GlitchLine } from "@/components/GlitchLine";
+import { SweepHeading } from "@/components/SweepHeading";
+import { ScrambleText } from "@/components/ScrambleText";
 
 export default function Home() {
   const { needs, profiles } = useData();
+  const glitching = useGlitchBursts();
 
   return (
     <main className="flex-1">
@@ -17,11 +22,11 @@ export default function Home() {
               [team_formation.exe]
             </p>
             <h1 className="font-display text-display-xl text-foreground animate-enter">
-              FIND THE
+              <GlitchLine text="FIND THE" glitching={glitching} />
               <br />
-              TEAMMATE
+              <GlitchLine text="TEAMMATE" glitching={glitching} />
               <br />
-              YOU&apos;RE MISSING.
+              <GlitchLine text="YOU'RE MISSING." glitching={glitching} />
             </h1>
             <p className="mt-6 text-muted max-w-md font-mono text-sm animate-enter">
               Post a need or a profile. Get ranked matches with a transparent,
@@ -29,7 +34,9 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <div className="animate-enter" style={{ animationDelay: "80ms" }}>
-                <LinkButton href="/needs/new">Post a Need →</LinkButton>
+                <LinkButton href="/needs/new">
+                  <ScrambleText text="Post a Need" /> →
+                </LinkButton>
               </div>
               <div className="animate-enter" style={{ animationDelay: "140ms" }}>
                 <LinkButton href="/profiles/new" variant="secondary">
@@ -54,7 +61,9 @@ export default function Home() {
 
       <section className="max-w-6xl mx-auto px-6 pb-14">
         <div className="flex items-center justify-between mb-5 border-b border-surface-border pb-3">
-          <h2 className="font-display text-display-md text-foreground">Open project needs</h2>
+          <h2 className="font-display text-display-md text-foreground">
+            <SweepHeading>Open project needs</SweepHeading>
+          </h2>
           <span className="text-meta font-mono text-muted uppercase">{needs.length} posted</span>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -66,7 +75,9 @@ export default function Home() {
 
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="flex items-center justify-between mb-5 border-b border-surface-border pb-3">
-          <h2 className="font-display text-display-md text-foreground">Teammates available</h2>
+          <h2 className="font-display text-display-md text-foreground">
+            <SweepHeading>Teammates available</SweepHeading>
+          </h2>
           <span className="text-meta font-mono text-muted uppercase">
             {profiles.length} posted
           </span>
