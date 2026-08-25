@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useData } from "@/lib/data-context";
 import { AVAILABILITY_OPTIONS, SKILL_OPTIONS } from "@/lib/types";
 import { Field, TextInput, TextArea, Select } from "@/components/ui/Field";
@@ -37,7 +38,10 @@ export default function NewNeedPage() {
 
   return (
     <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
-      <h1 className="text-2xl font-bold text-foreground mb-1">Post a Need</h1>
+      <Link href="/" className="text-sm text-primary font-medium hover:underline">
+        ← Back home
+      </Link>
+      <h1 className="text-2xl font-bold text-foreground mt-3 mb-1">Post a Need</h1>
       <p className="text-muted mb-8">
         Describe your project and the skills you're missing — we'll rank who covers them.
       </p>

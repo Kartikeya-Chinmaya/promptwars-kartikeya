@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useData } from "@/lib/data-context";
 import { AVAILABILITY_OPTIONS, INTEREST_OPTIONS, SKILL_OPTIONS } from "@/lib/types";
 import { Field, TextInput, TextArea, Select } from "@/components/ui/Field";
@@ -39,7 +40,10 @@ export default function NewProfilePage() {
 
   return (
     <main className="flex-1 max-w-2xl mx-auto px-6 py-12 w-full">
-      <h1 className="text-2xl font-bold text-foreground mb-1">Post your Profile</h1>
+      <Link href="/" className="text-sm text-primary font-medium hover:underline">
+        ← Back home
+      </Link>
+      <h1 className="text-2xl font-bold text-foreground mt-3 mb-1">Post your Profile</h1>
       <p className="text-muted mb-8">
         Share your skills and availability — we'll rank the projects that fit you.
       </p>

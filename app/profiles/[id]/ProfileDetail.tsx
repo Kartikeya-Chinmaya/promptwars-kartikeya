@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useData } from "@/lib/data-context";
@@ -7,6 +8,7 @@ import { matchNeedsToProfile } from "@/lib/match";
 import { Chip } from "@/components/ui/Chip";
 import { Button } from "@/components/ui/Button";
 import { NeedMatchCard } from "@/components/NeedMatchCard";
+import { ConnectModal } from "@/components/ConnectModal";
 
 export function ProfileDetail() {
   const { id } = useParams<{ id: string }>();
@@ -15,6 +17,7 @@ export function ProfileDetail() {
   const { getProfile, getNeed, needs } = useData();
   const profile = getProfile(id);
   const fromNeed = fromNeedId ? getNeed(fromNeedId) : undefined;
+  const [connectOpen, setConnectOpen] = useState(false);
 
   if (!profile) {
     return (
@@ -33,8 +36,6 @@ export function ProfileDetail() {
   const mailBody = fromNeed
     ? `Hi ${profile.name.split(" ")[0]}, I saw your profile matched my project "${fromNeed.title}" on ProjectMatch and wanted to connect.`
     : `Hi ${profile.name.split(" ")[0]}, I found your profile on ProjectMatch and wanted to connect.`;
-  const mailtoHref = `mailto:${profile.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-
   const matches = matchNeedsToProfile(profile, needs);
 
   return (
@@ -51,10 +52,16 @@ export function ProfileDetail() {
           <h1 className="text-3xl font-bold text-foreground">{profile.name}</h1>
           <p className="text-muted mt-2 max-w-xl">{profile.bio}</p>
         </div>
-        <a href={mailtoHref}>
-          <Button>Connect</Button>
-        </a>
+        <Button onClick={() => setConnectOpen(true)}>Connect</Button>
       </div>
+
+      <ConnectModal
+        profile={profile}
+        subject={mailSubject}
+        body={mailBody}
+        open={connectOpen}
+        onClose={() => setConnectOpen(false)}
+      />
 
       <div className="grid sm:grid-cols-2 gap-8 mt-8">
         <div>
