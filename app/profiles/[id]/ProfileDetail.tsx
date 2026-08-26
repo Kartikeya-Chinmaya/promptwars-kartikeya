@@ -9,6 +9,7 @@ import { Chip } from "@/components/ui/Chip";
 import { Button } from "@/components/ui/Button";
 import { NeedMatchCard } from "@/components/NeedMatchCard";
 import { ConnectModal } from "@/components/ConnectModal";
+import { TrustScorePanel } from "@/components/TrustScorePanel";
 
 export function ProfileDetail() {
   const { id } = useParams<{ id: string }>();
@@ -87,6 +88,15 @@ export function ProfileDetail() {
       <p className="text-sm text-muted mt-6 font-mono">
         Availability: {profile.availability}
       </p>
+
+      {profile.github_username && profile.trust_score && (
+        <div className="mt-8">
+          <TrustScorePanel
+            githubUsername={profile.github_username}
+            trustScore={profile.trust_score}
+          />
+        </div>
+      )}
 
       <h2 className="font-display text-display-md text-foreground mt-10 mb-4 border-b border-surface-border pb-3">
         Projects that fit this profile

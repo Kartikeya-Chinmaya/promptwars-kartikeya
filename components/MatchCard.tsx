@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ProfileMatch } from "@/lib/match";
 import { Card } from "@/components/ui/Card";
 import { SkillCoverageBar } from "@/components/SkillCoverageBar";
+import { TrustBadge } from "@/components/TrustBadge";
 
 export function MatchCard({ match, needId }: { match: ProfileMatch; needId: string }) {
   const { profile, coverage, coveredCount, totalRequired, availabilityMatch } = match;
@@ -11,7 +12,10 @@ export function MatchCard({ match, needId }: { match: ProfileMatch; needId: stri
       <Card className="p-5 h-full hover:border-accent card-glow">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div>
-            <h3 className="font-display text-display-md text-foreground">{profile.name}</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="font-display text-display-md text-foreground">{profile.name}</h3>
+              {profile.trust_score && <TrustBadge trustScore={profile.trust_score} />}
+            </div>
             <p className="text-meta font-mono text-muted mt-0.5 uppercase">
               {profile.availability}
             </p>

@@ -43,6 +43,19 @@ export const AVAILABILITY_OPTIONS = [
 
 export type Availability = (typeof AVAILABILITY_OPTIONS)[number];
 
+export interface SkillVerdict {
+  skill: string;
+  supported: "true" | "false" | "unclear";
+  reason: string;
+}
+
+export interface TrustScoreResult {
+  trust_score: number;
+  per_skill: SkillVerdict[];
+  flags: string[];
+  checked_at: string;
+}
+
 export interface Profile {
   id: string;
   name: string;
@@ -51,6 +64,11 @@ export interface Profile {
   availability: Availability;
   bio: string;
   email: string;
+  /** Optional — set when the profile owner supplied a GitHub username. */
+  github_username?: string;
+  /** Optional — a soft signal from public GitHub activity, not a verdict.
+   * Absent if no github_username was given, or if the lookup failed. */
+  trust_score?: TrustScoreResult;
 }
 
 export interface Need {
